@@ -8,8 +8,8 @@
 ## Phase 2: Part A — Cartography (50 Marks)[cite: 1]
 
 ### A1: Your Path Out
-- [ ] **Traceroute Data:** Run traceroutes to the open internet (at least 3 public hops)[cite: 1].
-- [ ] **Whois Lookups:** Run `whois` on the first three public hops[cite: 1].
+- [x] **Traceroute Data:** Run traceroutes to the open internet (at least 3 public hops)[cite: 1].
+- [x] **Whois Lookups:** Run `whois` on the first three public hops[cite: 1].
 - [ ] **Take Photo Evidence:** Photograph the nearest AP or wall port[cite: 1]. **Crucial:** Must include a handwritten placard in the frame with your roll numbers, date, and location (digital overlays score zero)[cite: 1].
 - [ ] **Draw the Diagram (Joint):**
     - [ ] Show both teammates' paths side-by-side (merging/diverging where applicable)[cite: 1].
@@ -20,26 +20,26 @@
 - [ ] **Tag Evidence:** Add `E-X` tags to every element on the diagram (untagged elements score zero)[cite: 1].
 
 ### A2: Campus Topology
-- [ ] **A2.1 (Router Hunt):** Trace to 10-15 destinations (campus and non-campus)[cite: 1].
-    - [ ] Create the Hop Table (IP, traces it appears in, position, RTT, best guess at role)[cite: 1].
-    - [ ] Draw the internal topology graph (routers as nodes, adjacencies as edges)[cite: 1].
-- [ ] **A2.2 (Wireless Layer):** Run a Wi-Fi survey from 3 different campus locations[cite: 1].
-    - [ ] Record SSID, BSSID, band, channel, and signal strength[cite: 1].
-    - [ ] Answer the 3 analysis questions (distinct APs, widespread vs local SSIDs, overlapping channels)[cite: 1].
+- [x] **A2.1 (Router Hunt):** Trace to 10-15 destinations (campus and non-campus)[cite: 1].
+    - [x] Create the Hop Table (IP, traces it appears in, position, RTT, best guess at role)[cite: 1].
+    - [x] Draw the internal topology graph (routers as nodes, adjacencies as edges)[cite: 1].
+- [x] **A2.2 (Wireless Layer):** Run a Wi-Fi survey from 3 different campus locations[cite: 1].
+    - [x] Record SSID, BSSID, band, channel, and signal strength[cite: 1].
+    - [x] Answer the 3 analysis questions (distinct APs, widespread vs local SSIDs, overlapping channels)[cite: 1].
 - [ ] **A2.3 (Class Map):** Add your router hops and AP data to the shared spreadsheet (`COL334_A1_Campus_Map.xlsx`)[cite: 1].
     - [ ] Verify two rows submitted by other teams (Confirm, Contradict, or Couldn't reach) and log the results[cite: 1].
 
 ### A3: The Delay Experiment
 - [ ] **A3.1 (Where does the time go?):**
-    - [ ] Table of min/median/max RTT for T1 through T5[cite: 1].
+    - [x] Table of min/median/max RTT for T1 through T5[cite: 1].
     - [ ] **PLOT:** RTT vs. Approximate Distance[cite: 1].
     - [ ] Answer the 3 analysis questions[cite: 1].
 - [ ] **A3.2 (Transmission Delay):**
-    - [ ] Table of min RTT to T1 and T3 across packet sizes (64, 256, 512, 1024, 1400)[cite: 1].
+    - [x] Table of min RTT to T1 and T3 across packet sizes (64, 256, 512, 1024, 1400)[cite: 1].
     - [ ] **PLOT:** Minimum RTT vs. Packet Size (two lines, fitted with a straight line)[cite: 1].
     - [ ] Answer the 3 analysis questions[cite: 1].
 - [ ] **A3.3 (Watch a queue fill):**
-    - [ ] Table of 5-minute continuous ping data for Busy Hour and Quiet Hour[cite: 1].
+    - [x] Table of 5-minute continuous ping data for Busy Hour and Quiet Hour[cite: 1].
     - [ ] **PLOT:** RTT vs. Time for both hours on the same graph[cite: 1].
     - [ ] Answer the 2 analysis questions[cite: 1].
 
