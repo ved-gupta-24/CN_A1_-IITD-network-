@@ -1,52 +1,51 @@
-IP Address,Type,Role,Hop Room,Hop MusicRoom,Hop BSWRoom,Hop LH510,RTT Min ms,Traces Seen In,Owner,Notes
-10.184.30.72,identity,Your device (wlan0),—,—,—,—,—,—,IITD Campus,Subnet 10.184.0.0/19
-10.152.251.125,identity,Your device (wlan0),—,—,—,—,—,—,IITD Campus,Subnet 10.152.192.0/18
-10.152.255.148,identity,Your device (wlan0),—,—,—,—,—,—,IITD Campus,Subnet 10.152.192.0/18
-10.184.0.1,gateway,Room gateway (VRRP VIP),1,—,2,—,2.84,gateway,IITD Campus,Same device as .0.13
-10.184.0.13,gateway,Room gateway (real),1,—,2,—,2.04,all Room traces,IITD Campus,ICMP Time-Exceeded IP
-10.152.224.3,gateway,Music/BSW/LH gateway,—,1,1,1,1.39,all Music/BSW/LH,IITD Campus,Gateway for 10.152.x
-10.254.151.9,distribution,10.152.x distribution,—,2,2,2,1.88,all Music/BSW/LH,IITD Campus,LB pair with .13
-10.254.151.13,distribution,10.152.x distribution,—,2,2,2,1.86,all Music/BSW/LH,IITD Campus,LB pair with .9
-10.254.236.2,distribution,Core campus (LB),—,3,3,—,—,Music/BSW traces,IITD Campus,4-member ECMP cluster
-10.254.236.6,distribution,Core campus (LB),2,3,3,3,2.67,all campus traces,IITD Campus,4-member ECMP cluster
-10.254.236.22,distribution,Core campus (LB),—,3,3,3,—,Music/BSW/LH traces,IITD Campus,4-member ECMP cluster
-10.254.236.26,distribution,Core campus (LB),2,3,3,3,2.00,all campus traces,IITD Campus,4-member ECMP cluster
-10.254.208.6,distribution,CSE dept distribution,2,3,3,—,2.24,cse.iitd.ac.in,IITD Campus,Only dept with own dist router
-SILENT,distribution,HPC distribution (inferred),2,2,2,—,—,hpc.iitd.ac.in,IITD Campus,Never responds to ICMP
-10.255.109.100,distribution,External uplink,2,3,3,—,3.54,8.8.8.8 / iitb / mit,IITD Campus,All internet traffic here
-10.255.107.3,nkn,NKN backbone entry,3,4,4,—,3.48,8.8.8.8 / iitb / mit,NKN,First shared external hop
-10.119.233.65,nkn,NKN backbone,4,5,5,—,3.46,8.8.8.8 / iitb / mit,NKN,Last shared external hop
-10.1.207.69,nkn,NKN backbone,5,6,6,—,7.83,8.8.8.8 / iitb,NKN,MIT diverges earlier
-10.1.200.137,nkn,NKN mesh node,6 or 9,7 or 10,7 or 10,—,83.48,8.8.8.8 / iitb,NKN,Same router at different hops = mesh
-10.1.207.122,nkn,NKN (IITB path),—,7,7,—,4.76,iitb,NKN,IITB-specific divergence
-10.120.123.118,nkn,NKN (IITB path),—,8,8,—,3.88,iitb,NKN,IITB path continues
-10.1.207.121,nkn,NKN (IITB path),8,9,9,—,96.80,iitb,NKN,RTT jumps ~97ms here
-10.255.237.94,nkn,NKN edge (LB),7,8 or 11,8 or 11,—,81.94,8.8.8.8 / iitb,NKN,3-member LB group
-10.255.238.122,nkn,NKN edge (LB),7,8 or 11,8 or 11,—,82.01,8.8.8.8 / iitb,NKN,3-member LB group
-10.255.238.254,nkn,NKN edge (LB),—,11,10,—,95.40,iitb,NKN,3-member LB group
-10.152.7.214,nkn,NKN-Google peering,8,9,9,—,81.91,8.8.8.8,NKN,Last private hop before Google
-72.14.204.62,public,Google peering router,9,10,10,—,81.82,8.8.8.8,Google LLC,Direct NKN-Google peering
-10.119.234.162,nkn,NKN to Jio handoff,6,7,7,—,3.88,mit,NKN,MIT path diverges here
-136.232.148.177,public,Reliance Jio backbone,7,8,8,—,5.66,mit,Reliance Jio,First ISP hop for MIT
-49.44.117.1,public,Akamai CDN edge,10,11,11,—,4.93,mit,Jio / Akamai,Last visible hop before MIT
-10.119.249.49,nkn,NKN backbone (IITB),—,12,12,—,91.98,iitb,NKN,Deep NKN backbone
-10.119.249.50,nkn,NKN backbone (IITB),—,13,13,—,82.40,iitb,NKN,Deep NKN backbone
-10.10.10.1,nkn,IITB campus gateway,—,14,14,—,82.36,iitb,IIT Bombay,Last visible hop
-10.10.211.211,destination,Shared server (5 depts),3 or 8,4 or 9,4 or 9,—,1.57,ee / phys / chem / mech / textile,IITD Campus,Virtual hosting + ICMP rate-limit
-10.10.211.212,destination,www.iitd.ac.in,unreachable,unreachable,unreachable,unreachable,—,www.iitd.ac.in,IITD Campus,Blocks ICMP
-10.10.211.216,destination,maths.iitd.ac.in,3,4,4,—,2.41,maths.iitd.ac.in,IITD Campus,Same /24 as shared server
-10.10.7.6,destination,owncloud.iitd.ac.in,3,4,4,—,1.21,owncloud.iitd.ac.in,IITD Campus,
-10.7.172.2,destination,erp.iitd.ac.in,3,4,4,—,1.81,erp.iitd.ac.in,IITD Campus,Returns !X admin prohibited
-10.10.20.2,destination,admissions.iitd.ac.in,unreachable,unreachable,unreachable,—,—,admissions.iitd.ac.in,IITD Campus,Blocks ICMP
-10.10.125.176,destination,webmail.iitd.ac.in,unreachable,unreachable,unreachable,unreachable,—,webmail.iitd.ac.in,IITD Campus,Blocks ICMP
-10.17.8.92,destination,library.iitd.ac.in,unreachable,unreachable,unreachable,—,—,library.iitd.ac.in,IITD Campus,Blocks ICMP
-10.113.30.14,destination,hpc.iitd.ac.in,3,—,—,—,5.19,hpc (Room run),IITD Campus,Behind silent dist router
-10.113.30.12,destination,hpc.iitd.ac.in,—,—,4,—,1.14,hpc (BSW run),IITD Campus,Different IP = load-balanced
-10.208.20.2,destination,cse.iitd.ac.in,3,4,4,—,1.57,cse.iitd.ac.in,IITD Campus,Own distribution path
-8.8.8.8,destination,Google Public DNS,11,12,12,—,96.48,8.8.8.8,Google LLC,
-103.21.124.133,destination,www.iitb.ac.in,unreachable,unreachable,unreachable,—,—,iitb,Cloudflare / IIT Bombay,14 hops visible then blocks
-118.215.155.66,destination,www.mit.edu,unreachable,unreachable,unreachable,—,—,mit,Akamai Technologies,Served from India CDN
-10.10.2.2,dns,DNS server (active),—,—,—,—,—,—,IITD Campus,
-10.7.172.202,dns,DNS server (current),—,—,—,—,—,—,IITD Campus,Per resolvectl status
-10.10.1.4,dns,DNS server (backup),—,—,—,—,—,—,IITD Campus,
-10.10.1.5,dns,DNS server (backup),—,—,—,—,—,—,IITD Campus,
+IP Address,Type,Role,Hop Room,Hop MusicRoom,Hop BSWRoom,RTT Min ms,Traces Seen In,Owner,Notes
+10.184.30.72,identity,Your device (wlan0),—,—,—,—,—,IITD Campus,Subnet 10.184.0.0/19
+10.152.251.125,identity,Your device (wlan0),—,—,—,—,—,IITD Campus,Subnet 10.152.192.0/18
+10.184.0.1,gateway,Room gateway (VRRP VIP),1,—,—,2.84,gateway,IITD Campus,Same device as .0.13; TTL=255
+10.184.0.13,gateway,Room gateway (real),1,—,—,2.04,all Room traces,IITD Campus,ICMP Time-Exceeded IP
+10.152.224.3,gateway,MusicRoom/BSW gateway,—,1,1,1.39,all Music/BSW traces,IITD Campus,Gateway for 10.152.192.0/18
+10.254.151.9,distribution,10.152.x distribution,—,2,2,1.88,all Music/BSW traces,IITD Campus,LB pair with .13
+10.254.151.13,distribution,10.152.x distribution,—,2,2,1.86,all Music/BSW traces,IITD Campus,LB pair with .9
+10.254.236.2,distribution,Core campus (LB),—,3,3,—,Music/BSW campus traces,IITD Campus,4-member ECMP cluster
+10.254.236.6,distribution,Core campus (LB),2,3,3,2.67,all campus traces,IITD Campus,4-member ECMP cluster
+10.254.236.22,distribution,Core campus (LB),—,3,3,—,Music/BSW campus traces,IITD Campus,4-member ECMP cluster
+10.254.236.26,distribution,Core campus (LB),2,3,3,2.00,all campus traces,IITD Campus,4-member ECMP cluster
+10.254.208.6,distribution,CSE dept distribution,2,3,3,2.24,cse.iitd.ac.in,IITD Campus,Only dept with own dist router
+SILENT,distribution,HPC distribution (inferred),2,2,2,—,hpc.iitd.ac.in,IITD Campus,Never responds to ICMP
+10.255.109.100,distribution,External uplink,2,3,3,3.54,8.8.8.8 / iitb / mit,IITD Campus,All internet traffic here
+10.255.107.3,nkn,NKN backbone entry,3,4,4,3.48,8.8.8.8 / iitb / mit,NKN,First shared external hop
+10.119.233.65,nkn,NKN backbone,4,5,5,3.46,8.8.8.8 / iitb / mit,NKN,Last shared external hop
+10.1.207.69,nkn,NKN backbone,5,6,6,7.83,8.8.8.8 / iitb,NKN,MIT diverges earlier
+10.1.200.137,nkn,NKN mesh node,6 or 9,7 or 10,7 or 10,83.48,8.8.8.8 / iitb,NKN,Same router at different hops = mesh
+10.1.207.122,nkn,NKN (IITB path),—,7,7,4.76,iitb,NKN,IITB-specific divergence
+10.120.123.118,nkn,NKN (IITB path),—,8,8,3.88,iitb,NKN,IITB path continues
+10.1.207.121,nkn,NKN (IITB path),8,9,9,96.80,iitb,NKN,RTT jumps ~97ms here
+10.255.237.94,nkn,NKN edge (LB),7,8 or 11,8 or 11,81.94,8.8.8.8 / iitb,NKN,3-member LB group
+10.255.238.122,nkn,NKN edge (LB),7,8 or 11,8 or 11,82.01,8.8.8.8 / iitb,NKN,3-member LB group
+10.255.238.254,nkn,NKN edge (LB),—,11,10,95.40,iitb,NKN,3-member LB group
+10.152.7.214,nkn,NKN-Google peering,8,9,9,81.91,8.8.8.8,NKN,Last private hop before Google
+72.14.204.62,public,Google peering router,9,10,10,81.82,8.8.8.8,Google LLC,Direct NKN-Google peering
+10.119.234.162,nkn,NKN to Jio handoff,6,7,7,3.88,mit,NKN,MIT path diverges here
+136.232.148.177,public,Reliance Jio backbone,7,8,8,5.66,mit,Reliance Jio,First ISP hop for MIT
+49.44.117.1,public,Akamai CDN edge,10,11,11,4.93,mit,Jio / Akamai,Last visible hop before MIT
+10.119.249.49,nkn,NKN backbone (IITB),—,12,12,91.98,iitb,NKN,Deep NKN backbone
+10.119.249.50,nkn,NKN backbone (IITB),—,13,13,82.40,iitb,NKN,Deep NKN backbone
+10.10.10.1,nkn,IITB campus gateway,—,14,14,82.36,iitb,IIT Bombay,Last visible hop
+10.10.211.211,destination,Shared server (5 depts),3 or 8,4 or 9,4 or 9,1.57,ee / phys / chem / mech / textile,IITD Campus,Virtual hosting + ICMP rate-limit
+10.10.211.212,destination,www.iitd.ac.in,unreachable,unreachable,unreachable,—,www.iitd.ac.in,IITD Campus,Blocks ICMP
+10.10.211.216,destination,maths.iitd.ac.in,3,4,4,2.41,maths.iitd.ac.in,IITD Campus,Same /24 as shared server
+10.10.7.6,destination,owncloud.iitd.ac.in,3,4,4,1.21,owncloud.iitd.ac.in,IITD Campus,
+10.7.172.2,destination,erp.iitd.ac.in,3,4,4,1.81,erp.iitd.ac.in,IITD Campus,Returns !X admin prohibited
+10.10.20.2,destination,admissions.iitd.ac.in,unreachable,unreachable,unreachable,—,admissions.iitd.ac.in,IITD Campus,Blocks ICMP
+10.10.125.176,destination,webmail.iitd.ac.in,unreachable,unreachable,unreachable,—,webmail.iitd.ac.in,IITD Campus,Blocks ICMP
+10.17.8.92,destination,library.iitd.ac.in,unreachable,unreachable,unreachable,—,library.iitd.ac.in,IITD Campus,Blocks ICMP
+10.113.30.14,destination,hpc.iitd.ac.in,3,—,—,5.19,hpc (Room run),IITD Campus,Behind silent dist router
+10.113.30.12,destination,hpc.iitd.ac.in,—,—,4,1.14,hpc (BSW run),IITD Campus,Different IP = load-balanced
+10.208.20.2,destination,cse.iitd.ac.in,3,4,4,1.57,cse.iitd.ac.in,IITD Campus,Own distribution path
+8.8.8.8,destination,Google Public DNS,11,12,12,96.48,8.8.8.8,Google LLC,
+103.21.124.133,destination,www.iitb.ac.in,unreachable,unreachable,unreachable,—,iitb,Cloudflare / IIT Bombay,14 hops visible then blocks
+118.215.155.66,destination,www.mit.edu,unreachable,unreachable,unreachable,—,mit,Akamai Technologies,Served from India CDN
+10.10.2.2,dns,DNS server (active),—,—,—,—,—,IITD Campus,
+10.7.172.202,dns,DNS server (current),—,—,—,—,—,IITD Campus,Per resolvectl status
+10.10.1.4,dns,DNS server (backup),—,—,—,—,—,IITD Campus,
+10.10.1.5,dns,DNS server (backup),—,—,—,—,—,IITD Campus,
