@@ -275,6 +275,168 @@ whois:        whois.apnic.net
   - **Registry:** APNIC
   - *(Note: While the IP block is administered by APNIC, 1.1.1.1 is widely known as the public DNS resolver operated by Cloudflare in partnership with APNIC).*
 
+# Assignment 1 — A1: Your Path Out
+
+## Step 1 — Identify Network Interface, Local IP, MAC Address, and Gateway
+
+### Goal
+Determine the active network interface, private IP address, subnet mask, device MAC address, default gateway, DNS resolvers, and AP details to establish the local endpoint of the connection.
+
+### Command / Action
+1. `ifconfig en0 | grep -E "inet |ether"`
+2. `netstat -nr -f inet | grep default`
+3. `scutil --dns | grep 'nameserver\[[0-9]*\]' | head -n 2`
+4. macOS Option (⌥) + Click on Wi-Fi icon in menu bar.
+
+### Observation
+Terminal Outputs:
+    ether 14:7f:ce:a0:03:dc
+    inet 10.184.30.65 netmask 0xffffe000 broadcast 10.184.31.255
+
+    default            10.184.0.1         UGScg                 en0
+
+    nameserver[0] : 2001:df4:e000:26::202
+    nameserver[1] : 2001:df4:e000:29::104
+
+Wi-Fi Menu UI Outputs:
+    SSID: IITD_WIFI
+    BSSID: a4:b4:39:40:dd:4f
+    Channel: 157 (5 GHz, 80 MHz)
+    RSSI: -63 dBm
+    Security: WPA2 Enterprise
+
+### Result
+- **Interface:** en0
+- **Device MAC Address:** 14:7f:ce:a0:03:dc
+- **Local IP Address:** 10.184.30.65
+- **Subnet Mask:** 255.255.224.0 (0xffffe000)
+- **Default Gateway (T1):** 10.184.0.1
+- **DNS Resolver:** 2001:df4:e000:26::202, 2001:df4:e000:29::104
+- **SSID:** IITD_WIFI
+- **BSSID (AP MAC):** a4:b4:39:40:dd:4f
+
+### Record / To Fill
+- **Location where measurement was taken:** Zanskar Hostel NC-13 room 
+- **SSID:** IITD_WIFI
+- **Interface:** en0
+- **IP:** 10.184.30.65
+- **Subnet mask:** 255.255.224.0
+- **Gateway / T1:** 10.184.0.1
+- **Wi-Fi interface MAC:** 14:7f:ce:a0:03:dc
+- **BSSID / actual AP:** a4:b4:39:40:dd:4f
+- **DNS resolver:** 2001:df4:e000:26::202, 2001:df4:e000:29::104
+- **AP photograph:** [PENDING - Take photo of AP with placard][cite: 1]
+
+### Inference
+The laptop is connected to IITD_WIFI via interface en0 on a 5 GHz band (Channel 157) with an assigned private IP of 10.184.30.65. The default gateway (T1) is 10.184.0.1. The specific Access Point handling this connection has the BSSID a4:b4:39:40:dd:4f.
+
+---
+
+## Step 2 — Verify T1 with Traceroute and Find Public Hops
+
+### Goal
+Check whether the default gateway appears as the first visible router (hop 1) in traceroute, find the last internal campus router, and identify the first 3 public routers outside the campus network[cite: 1].
+
+### Commands Used
+1. `sudo traceroute -I -m 20 -n 1.1.1.1` (Initial failed attempt - blocked by firewall)
+2. `traceroute -n 8.8.8.8` (Successful trace to Google to capture its edge routers)
+3. `traceroute -n www.mit.edu` (Successful trace to an Akamai-hosted distant server to force external transit routing)
+
+### Observation 1: Initial Blocked Attempt (Trace to 1.1.1.1)
+ 1  10.184.0.13  6.504 ms
+ ...
+ 4  10.119.233.65  3.446 ms
+ 5  * * *
+ 6  * * *
+ 7  * * *
+ 8  * * *
+ 9  100.99.0.210  82.028 ms
+10  1.1.1.1  6.214 ms
+
+### Observation 2: Successful Branching Traces (Google & MIT)
+**Trace A (To 8.8.8.8):**
+ 1  10.184.0.13  6.242 ms
+ 2  10.255.109.100  4.242 ms
+ ...
+ 7  10.255.237.94  32.813 ms
+ 8  10.152.7.214  40.277 ms
+ 9  72.14.204.62  29.719 ms
+10  * * *
+11  8.8.8.8  39.747 ms
+
+**Trace B (To www.mit.edu):**
+ 1  10.184.0.13  6.242 ms 
+ 2  10.255.109.100  4.242 ms 
+ 3  10.255.107.3  4.164 ms 
+ 4  10.119.233.65  5.214 ms 
+ 5  * * *
+ 6  10.119.234.162  6.499 ms 
+ 7  136.232.148.177  7.015 ms 
+ 8  * * *
+ 9  49.44.188.14  31.106 ms
+
+### Result
+- **Our default gateway (T1):** 10.184.0.1
+- **Traceroute Hop 1:** 10.184.0.13
+- **T1 != traceroute hop 1**[cite: 1]
+- **Last internal campus router observed:** 10.119.234.162 (from the MIT trace)
+- **Public Hops Found (Branch A - Google):** 72.14.204.62, 8.8.8.8
+- **Public Hops Found (Branch B - Transit):** 136.232.148.177, 49.44.188.14
+
+### Inference
+1. **The Gateway Discrepancy:** The configured default gateway (10.184.0.1) does not match the first visible traceroute hop (10.184.0.13)[cite: 1]. This usually occurs due to a First Hop Redundancy Protocol (like VRRP/HSRP) where the gateway is a virtual IP, or due to a local wireless controller/proxy ARP setup routing the traffic.
+2. **ISP Masking & CGNAT:** In our initial trace to `1.1.1.1`, the network border aggressively dropped traceroute packets. Hop 9 resolved to `100.99.0.210`, which falls within the `100.64.0.0/10` block designated for Carrier-Grade NAT (CGNAT). The intermediate public routers dropped TTL-expired packets, hiding the public transit path.
+3. **Overcoming the Block (The Branching Network):** By routing to different targets (Google and MIT/Akamai), the traffic took divergent paths out of the IIT Delhi network, allowing us to successfully map the boundary. The packets traverse the campus infrastructure using private RFC 1918 addresses (`10.x.x.x`). Traffic destined for Google hands off directly to a public IP (`72.14.204.62`) right at the edge. Traffic destined elsewhere (MIT) hands off to a completely different public gateway (`136.232.148.177`).
+
+---
+
+## Step 3 — WHOIS Lookups for Public Destinations
+
+### Goal
+Identify the organization and regional registry responsible for the public IP addresses successfully reached in the traceroute to satisfy the requirement of mapping the first three public hops[cite: 1].
+
+### Commands Used
+1. `whois 72.14.204.62`
+2. `whois 8.8.8.8`
+3. `whois 136.232.148.177`
+4. `whois 49.44.188.14`
+
+### Observation (Google IPs - ARIN)
+- **72.14.204.62:** NetName: GOOGLE, Organization: Google LLC (GOGL)
+- **8.8.8.8:** NetName: GOGL, Organization: Google LLC (GOGL)
+
+### Observation (Transit IPs - APNIC)
+- **136.232.148.177:** NetName: RELIANCEJIO-IN, Organization: Reliance Jio Infocomm Limited, OriginAS: AS55836
+- **49.44.188.14:** NetName: RELIANCEJIO-IN, Organization: Reliance Jio Infocomm Limited, OriginAS: AS55836
+
+### Result
+- **Branch A (Google Path):**
+  - **Public Hop 1:** 72.14.204.62 (Google LLC)
+  - **Public Hop 2:** 8.8.8.8 (Google LLC)
+- **Branch B (General Transit Path):**
+  - **Public Hop 3:** 136.232.148.177 (Reliance Jio Infocomm Limited)
+  - **Public Hop 4:** 49.44.188.14 (Reliance Jio Infocomm Limited)
+
+### Inference
+This data reveals how IIT Delhi's external connectivity is structured. For general internet transit (like the path to MIT/Akamai), the university network hands off traffic to Reliance Jio (AS55836) as its ISP. However, Google maintains a massive edge network and peering presence. When querying Google services, traffic bypasses the general transit ISP and hands off directly to Google infrastructure right at the campus boundary.
+
+---
+
+## Appendix A4: Evidence Reference[cite: 1]
+*(Note: Terminal outputs for the above sections must be added to the A4 Evidence Appendix in the final report.)*[cite: 1]
+*   **E-1:** Local configuration (ifconfig, netstat, scutil outputs).
+*   **E-2:** Photograph of the nearest AP at Zanskar NC-13 with physical placard.
+*   **E-3:** Raw traceroute outputs to `8.8.8.8`, `1.1.1.1`, and `www.mit.edu`.
+*   **E-4:** Raw WHOIS outputs for `72.14.204.62`, `8.8.8.8`, `136.232.148.177`, and `49.44.188.14`.
+
+### Diagram Instructions (For Final PDF)
+*   **Start:** Laptop -> AP (`a4:b4:39:40:dd:4f`) -> Gateway (`10.184.0.13`) -> internal routing (`10.x.x.x`).
+*   **Boundary:** Draw a dashed line labeled **"Here my evidence stops / IIT Delhi Boundary"**[cite: 1].
+*   **Inferred Branches (in grey):** 
+    *   Path 1 (Google): `72.14.204.62` -> `8.8.8.8` (Google LLC).
+    *   Path 2 (Transit): `136.232.148.177` -> `49.44.188.14` (Reliance Jio).
+*   **Tags:** Apply `E-1`, `E-2`, `E-3`, `E-4` to the corresponding elements[cite: 1].
+
 
 # Assignment 1 — A3: The Delay Experiment
 
