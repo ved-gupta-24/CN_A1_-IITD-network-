@@ -1,0 +1,216 @@
+[2026-08-21 21:25:30] netlab_gen roll=2024CS10382 day=2 window=3
+[2026-08-21 21:25:30] SEED_TAG=C9A747B4
+[2026-08-21 21:25:30] platform=Linux-7.1.8-1-cachyos-x86_64-with-glibc2.44
+[2026-08-21 21:25:30] server=168.144.154.92
+
+[2026-08-21 21:25:30] server = 168.144.154.92
+[2026-08-21 21:25:30] === fixed measurements ===
+[2026-08-21 21:25:30] -- interface configuration --
+[2026-08-21 21:25:30] $ ip addr
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute 
+       valid_lft forever preferred_lft forever
+2: enp8s0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc fq_codel state DOWN group default qlen 1000
+    link/ether 40:c2:ba:50:b8:6f brd ff:ff:ff:ff:ff:ff
+    altname enx40c2ba50b86f
+3: wlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether c0:35:32:25:23:17 brd ff:ff:ff:ff:ff:ff
+    inet 10.184.17.54/19 brd 10.184.31.255 scope global dynamic noprefixroute wlan0
+       valid_lft 10751sec preferred_lft 10751sec
+    inet6 2001:df4:e000:3fd2:fd16:8bf4:b1fe:5d81/64 scope global dynamic noprefixroute 
+       valid_lft 2591954sec preferred_lft 604754sec
+    inet6 fe80::ff5c:3cb:3874:9ec4/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+4: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default qlen 0
+    link/ether 26:4a:69:2c:e5:59 brd ff:ff:ff:ff:ff:ff
+    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
+       valid_lft forever preferred_lft forever
+
+[2026-08-21 21:25:30] -- routing table --
+[2026-08-21 21:25:30] $ ip route
+default via 10.184.0.1 dev wlan0 proto dhcp src 10.184.17.54 metric 600 
+10.184.0.0/19 dev wlan0 proto kernel scope link src 10.184.17.54 metric 600 
+172.17.0.0/16 dev docker0 proto kernel scope link src 172.17.0.1 linkdown
+
+[2026-08-21 21:25:30] -- ping T2 www.iitd.ac.in --
+[2026-08-21 21:25:30] $ ping -c 20 www.iitd.ac.in
+PING www.iitd.ac.in (2001:df4:e000:29::212) 56 data bytes
+64 bytes from 2001:df4:e000:29::212: icmp_seq=2 ttl=62 time=82.1 ms
+64 bytes from 2001:df4:e000:29::212: icmp_seq=3 ttl=62 time=3.89 ms
+64 bytes from 2001:df4:e000:29::212: icmp_seq=4 ttl=62 time=27.2 ms
+64 bytes from 2001:df4:e000:29::212: icmp_seq=5 ttl=62 time=50.8 ms
+64 bytes from 2001:df4:e000:29::212: icmp_seq=6 ttl=62 time=78.2 ms
+64 bytes from 2001:df4:e000:29::212: icmp_seq=7 ttl=62 time=97.6 ms
+64 bytes from 2001:df4:e000:29::212: icmp_seq=8 ttl=62 time=18.2 ms
+64 bytes from 2001:df4:e000:29::212: icmp_seq=9 ttl=62 time=42.0 ms
+64 bytes from 2001:df4:e000:29::212: icmp_seq=10 ttl=62 time=64.2 ms
+64 bytes from 2001:df4:e000:29::212: icmp_seq=11 ttl=62 time=87.5 ms
+64 bytes from 2001:df4:e000:29::212: icmp_seq=12 ttl=62 time=8.05 ms
+64 bytes from 2001:df4:e000:29::212: icmp_seq=13 ttl=62 time=31.3 ms
+64 bytes from 2001:df4:e000:29::212: icmp_seq=14 ttl=62 time=55.3 ms
+64 bytes from 2001:df4:e000:29::212: icmp_seq=15 ttl=62 time=79.0 ms
+64 bytes from 2001:df4:e000:29::212: icmp_seq=16 ttl=62 time=107 ms
+64 bytes from 2001:df4:e000:29::212: icmp_seq=17 ttl=62 time=23.1 ms
+64 bytes from 2001:df4:e000:29::212: icmp_seq=18 ttl=62 time=46.5 ms
+64 bytes from 2001:df4:e000:29::212: icmp_seq=19 ttl=62 time=71.7 ms
+64 bytes from 2001:df4:e000:29::212: icmp_seq=20 ttl=62 time=95.1 ms
+
+--- www.iitd.ac.in ping statistics ---
+20 packets transmitted, 19 received, 5% packet loss, time 19042ms
+rtt min/avg/max/mdev = 3.892/56.275/107.353/30.938 ms
+
+[2026-08-21 21:25:50] -- ping T3 8.8.8.8 --
+[2026-08-21 21:25:50] $ ping -c 20 8.8.8.8
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=112 time=121 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=112 time=144 ms
+64 bytes from 8.8.8.8: icmp_seq=3 ttl=112 time=65.3 ms
+64 bytes from 8.8.8.8: icmp_seq=4 ttl=112 time=86.9 ms
+64 bytes from 8.8.8.8: icmp_seq=5 ttl=112 time=110 ms
+64 bytes from 8.8.8.8: icmp_seq=6 ttl=112 time=137 ms
+64 bytes from 8.8.8.8: icmp_seq=7 ttl=112 time=55.0 ms
+64 bytes from 8.8.8.8: icmp_seq=8 ttl=112 time=78.9 ms
+64 bytes from 8.8.8.8: icmp_seq=9 ttl=112 time=103 ms
+64 bytes from 8.8.8.8: icmp_seq=10 ttl=112 time=125 ms
+64 bytes from 8.8.8.8: icmp_seq=11 ttl=112 time=149 ms
+64 bytes from 8.8.8.8: icmp_seq=12 ttl=112 time=70.1 ms
+64 bytes from 8.8.8.8: icmp_seq=13 ttl=112 time=93.6 ms
+64 bytes from 8.8.8.8: icmp_seq=14 ttl=112 time=117 ms
+64 bytes from 8.8.8.8: icmp_seq=15 ttl=112 time=141 ms
+64 bytes from 8.8.8.8: icmp_seq=16 ttl=112 time=61.0 ms
+64 bytes from 8.8.8.8: icmp_seq=17 ttl=112 time=85.1 ms
+64 bytes from 8.8.8.8: icmp_seq=18 ttl=112 time=108 ms
+64 bytes from 8.8.8.8: icmp_seq=19 ttl=112 time=132 ms
+64 bytes from 8.8.8.8: icmp_seq=20 ttl=112 time=156 ms
+
+--- 8.8.8.8 ping statistics ---
+20 packets transmitted, 20 received, 0% packet loss, time 19011ms
+rtt min/avg/max/mdev = 54.972/106.960/155.581/30.490 ms
+
+[2026-08-21 21:26:09] -- ping T4 www.iitb.ac.in --
+[2026-08-21 21:26:09] $ ping -c 20 www.iitb.ac.in
+PING www.iitb.ac.in (103.21.124.133) 56(84) bytes of data.
+
+--- www.iitb.ac.in ping statistics ---
+20 packets transmitted, 0 received, 100% packet loss, time 19443ms
+
+[2026-08-21 21:26:39] -- ping T5 www.mit.edu --
+[2026-08-21 21:26:39] $ ping -c 20 www.mit.edu
+PING www.mit.edu (2600:140f:2e00:1b4::255e) 56 data bytes
+64 bytes from g2600-140f-2e00-01b4-0000-0000-0000-255e.deploy.static.akamaitechnologies.com (2600:140f:2e00:1b4::255e): icmp_seq=1 ttl=52 time=6.17 ms
+64 bytes from g2600-140f-2e00-01b4-0000-0000-0000-255e.deploy.static.akamaitechnologies.com (2600:140f:2e00:1b4::255e): icmp_seq=2 ttl=52 time=22.7 ms
+64 bytes from g2600-140f-2e00-01b4-0000-0000-0000-255e.deploy.static.akamaitechnologies.com (2600:140f:2e00:1b4::255e): icmp_seq=3 ttl=52 time=44.6 ms
+64 bytes from g2600-140f-2e00-01b4-0000-0000-0000-255e.deploy.static.akamaitechnologies.com (2600:140f:2e00:1b4::255e): icmp_seq=4 ttl=52 time=67.8 ms
+64 bytes from g2600-140f-2e00-01b4-0000-0000-0000-255e.deploy.static.akamaitechnologies.com (2600:140f:2e00:1b4::255e): icmp_seq=5 ttl=52 time=5.75 ms
+64 bytes from g2600-140f-2e00-01b4-0000-0000-0000-255e.deploy.static.akamaitechnologies.com (2600:140f:2e00:1b4::255e): icmp_seq=6 ttl=52 time=11.7 ms
+64 bytes from g2600-140f-2e00-01b4-0000-0000-0000-255e.deploy.static.akamaitechnologies.com (2600:140f:2e00:1b4::255e): icmp_seq=7 ttl=52 time=36.0 ms
+64 bytes from g2600-140f-2e00-01b4-0000-0000-0000-255e.deploy.static.akamaitechnologies.com (2600:140f:2e00:1b4::255e): icmp_seq=8 ttl=52 time=60.0 ms
+64 bytes from g2600-140f-2e00-01b4-0000-0000-0000-255e.deploy.static.akamaitechnologies.com (2600:140f:2e00:1b4::255e): icmp_seq=9 ttl=52 time=84.6 ms
+64 bytes from g2600-140f-2e00-01b4-0000-0000-0000-255e.deploy.static.akamaitechnologies.com (2600:140f:2e00:1b4::255e): icmp_seq=10 ttl=52 time=8.70 ms
+64 bytes from g2600-140f-2e00-01b4-0000-0000-0000-255e.deploy.static.akamaitechnologies.com (2600:140f:2e00:1b4::255e): icmp_seq=11 ttl=52 time=30.5 ms
+64 bytes from g2600-140f-2e00-01b4-0000-0000-0000-255e.deploy.static.akamaitechnologies.com (2600:140f:2e00:1b4::255e): icmp_seq=12 ttl=52 time=54.3 ms
+64 bytes from g2600-140f-2e00-01b4-0000-0000-0000-255e.deploy.static.akamaitechnologies.com (2600:140f:2e00:1b4::255e): icmp_seq=13 ttl=52 time=77.9 ms
+64 bytes from g2600-140f-2e00-01b4-0000-0000-0000-255e.deploy.static.akamaitechnologies.com (2600:140f:2e00:1b4::255e): icmp_seq=14 ttl=52 time=104 ms
+64 bytes from g2600-140f-2e00-01b4-0000-0000-0000-255e.deploy.static.akamaitechnologies.com (2600:140f:2e00:1b4::255e): icmp_seq=15 ttl=52 time=24.1 ms
+64 bytes from g2600-140f-2e00-01b4-0000-0000-0000-255e.deploy.static.akamaitechnologies.com (2600:140f:2e00:1b4::255e): icmp_seq=16 ttl=52 time=48.4 ms
+64 bytes from g2600-140f-2e00-01b4-0000-0000-0000-255e.deploy.static.akamaitechnologies.com (2600:140f:2e00:1b4::255e): icmp_seq=17 ttl=52 time=71.6 ms
+64 bytes from g2600-140f-2e00-01b4-0000-0000-0000-255e.deploy.static.akamaitechnologies.com (2600:140f:2e00:1b4::255e): icmp_seq=18 ttl=52 time=95.5 ms
+64 bytes from g2600-140f-2e00-01b4-0000-0000-0000-255e.deploy.static.akamaitechnologies.com (2600:140f:2e00:1b4::255e): icmp_seq=19 ttl=52 time=17.4 ms
+64 bytes from g2600-140f-2e00-01b4-0000-0000-0000-255e.deploy.static.akamaitechnologies.com (2600:140f:2e00:1b4::255e): icmp_seq=20 ttl=52 time=41.2 ms
+
+--- www.mit.edu ping statistics ---
+20 packets transmitted, 20 received, 0% packet loss, time 19003ms
+rtt min/avg/max/mdev = 5.748/45.625/103.562/29.703 ms
+
+[2026-08-21 21:26:58] -- traceroute T2 www.iitd.ac.in --
+[2026-08-21 21:26:58] $ traceroute -n -m 20 www.iitd.ac.in
+traceroute to www.iitd.ac.in (2001:df4:e000:29::212), 20 hops max, 80 byte packets
+ 1  2001:df4:e000:3fd2:361b:2dff:fe9e:6fbf  2.970 ms  2.943 ms  5.357 ms
+ 2  2001:df4:e000:26::24  2.922 ms  2.912 ms 2001:df4:e000:26::23  5.327 ms
+ 3  * * *
+ 4  * * *
+ 5  * * *
+ 6  * * *
+ 7  * * *
+ 8  * * *
+ 9  * * *
+10  * * *
+11  * * *
+12  * * *
+13  * * *
+14  * * *
+15  * * *
+16  * * *
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+
+[2026-08-21 21:27:18] -- traceroute T3 8.8.8.8 --
+[2026-08-21 21:27:18] $ traceroute -n -m 20 8.8.8.8
+traceroute to 8.8.8.8 (8.8.8.8), 20 hops max, 60 byte packets
+ 1  10.184.0.13  62.443 ms  62.384 ms  64.610 ms
+ 2  10.255.109.100  62.367 ms  62.358 ms  62.349 ms
+ 3  10.255.107.3  64.577 ms  64.568 ms  64.560 ms
+ 4  10.119.233.65  64.551 ms  64.543 ms  64.534 ms
+ 5  10.1.207.69  172.639 ms  172.622 ms  172.611 ms
+ 6  10.1.200.137  172.603 ms  110.090 ms  110.056 ms
+ 7  10.255.238.122  110.048 ms 10.255.237.94  110.062 ms 10.255.238.122  110.021 ms
+ 8  10.152.7.214  107.953 ms  107.923 ms  107.915 ms
+ 9  * * 72.14.204.62  107.892 ms
+10  * * *
+11  8.8.8.8  98.424 ms  98.375 ms  98.408 ms
+
+[2026-08-21 21:27:19] -- traceroute T4 www.iitb.ac.in --
+[2026-08-21 21:27:19] $ traceroute -n -m 20 www.iitb.ac.in
+traceroute to www.iitb.ac.in (103.21.124.133), 20 hops max, 60 byte packets
+ 1  10.184.0.13  20.976 ms  19.394 ms  20.941 ms
+ 2  10.255.109.100  20.935 ms  20.930 ms  20.924 ms
+ 3  10.255.107.3  20.935 ms  20.930 ms  20.924 ms
+ 4  10.119.233.65  20.904 ms  20.900 ms  20.893 ms
+ 5  10.1.207.69  23.332 ms  23.323 ms  23.316 ms
+ 6  10.1.207.122  23.310 ms  4.679 ms  4.205 ms
+ 7  10.120.123.118  4.194 ms  4.189 ms  4.184 ms
+ 8  10.1.207.121  106.320 ms  106.316 ms  106.311 ms
+ 9  10.1.200.137  106.306 ms  106.302 ms  106.297 ms
+10  10.255.238.122  106.293 ms 10.255.237.94  103.889 ms 10.255.238.254  103.845 ms
+11  10.119.249.49  103.874 ms  103.869 ms  103.095 ms
+12  10.119.249.50  102.045 ms  102.029 ms  102.025 ms
+13  10.10.10.1  102.021 ms  101.477 ms  101.452 ms
+14  * * *
+15  * * *
+16  * * *
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+
+[2026-08-21 21:27:30] -- traceroute T5 www.mit.edu --
+[2026-08-21 21:27:30] $ traceroute -n -m 20 www.mit.edu
+traceroute to www.mit.edu (2600:140f:2e00:1ad::255e), 20 hops max, 80 byte packets
+ 1  2001:df4:e000:3fd2:361b:2dff:fe9e:6fbf  2.413 ms  4.605 ms  4.597 ms
+ 2  fe80::b60c:25ff:fee0:4011%wlan0  4.591 ms  4.585 ms  4.579 ms
+ 3  2405:8a00:a:2::c6  4.573 ms  4.584 ms  4.577 ms
+ 4  2405:8a00:a:2::c5  4.571 ms  4.549 ms  4.543 ms
+ 5  * * *
+ 6  * * *
+ 7  2404:a800:1a00:209::2c9  9.048 ms  9.043 ms  9.038 ms
+ 8  * * *
+ 9  2600:140f:2e00:ffff::242  192.708 ms  192.703 ms  192.699 ms
+10  * * *
+11  * * *
+12  * * *
+13  * * *
+14  * * *
+15  * * *
+16  * * *
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+
+[2026-08-21 21:27:50] === generated traffic ===
+[2026-08-21 21:29:51] === done ===
